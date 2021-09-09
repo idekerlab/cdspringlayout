@@ -76,24 +76,23 @@ def run_layout(theargs, out_stream=sys.stdout,
         with redirect_stdout(sys.stderr):
             net = ndex2.create_nice_cx_from_file(theargs.input)
             g = net.to_networkx(mode='default')
+            del net
             pos = networkx.spring_layout(g, k=theargs.k,
                                          iterations=theargs.iterations,
                                          threshold=theargs.threshold,
                                          weight=theargs.weight,
                                          scale=theargs.scale)
-            new_cart_layout = []
+            new_layout = []
             for node_id, coordinates in pos.items():
-                new_cart_layout.append({
+                new_layout.append({
                     'node': node_id,
                     'x': coordinates[0],
                     'y': -coordinates[1]  # See note below!!!
                 })
-            net.set_opaque_aspect(ndex2.constants.CARTESIAN_LAYOUT_ASPECT,
-                                  new_cart_layout)
 
-
-            # write network as CX to output stream
-            json.dump(net.to_cx(), out_stream)
+            cart_aspect = {ndex2.constants.CARTESIAN_LAYOUT_ASPECT: new_layout}
+            # write cartesianLayout aspect to output stream
+            json.dump(cart_aspect, out_stream)
         return 0
     except Exception as e:
         err_stream.write(str(e))
@@ -111,8 +110,8 @@ def main(args):
     :rtype: int
     """
     desc = """
-    Runs spring layout on command line, sending output to standard
-    out in new 
+    Runs spring layout on command line, sending cartesianLayout aspect
+    to standard out
     """
     theargs = _parse_arguments(desc, args[1:])
     try:
