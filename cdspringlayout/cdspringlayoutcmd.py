@@ -89,10 +89,8 @@ def run_layout(theargs, out_stream=sys.stdout,
                     'x': coordinates[0],
                     'y': -coordinates[1]  # See note below!!!
                 })
-
-            cart_aspect = {ndex2.constants.CARTESIAN_LAYOUT_ASPECT: new_layout}
-            # write cartesianLayout aspect to output stream
-            json.dump(cart_aspect, out_stream)
+            # write value of cartesianLayout aspect to output stream
+            json.dump(new_layout, out_stream)
         return 0
     except Exception as e:
         err_stream.write(str(e))
