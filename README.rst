@@ -1,9 +1,9 @@
 ===================================================
-Network Heat Diffusion
+Networkx Spring Layout via CDAPS
 ===================================================
 
-This repository creates a CDAPS compatible Diffusion Docker image using Network Heat Diffusion
-packaged from https://github.com/idekerlab/networkheatdiffusion
+This repository creates a CDAPS_ compatible Docker image that
+runs `Networkx <https://networkx.org>`__ Spring layout on CX_ data passed in
 
 Dependencies
 ------------
@@ -17,8 +17,8 @@ Building
 
 .. code-block::
 
-   git clone https://github.com/idekerlab/cddiffusion
-   cd cddiffusion
+   git clone https://github.com/idekerlab/cdspringlayout
+   cd cdspringlayout
    make dockerbuild
 
 Run **make** command with no arguments to see other build/deploy options including creation of Docker image
@@ -54,7 +54,7 @@ Usage
 
 .. code-block::
 
-   docker run -v coleslawndex/cddiffusion:0.0.1 -h
+   docker run -v coleslawndex/cdspringlayout:0.0.1 -h
 
 
 Credits
@@ -64,3 +64,5 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _CDAPS: https://cdaps.readthedocs.io
+.. _CX: https://home.ndexbio.org/data-model
